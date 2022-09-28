@@ -7,10 +7,10 @@
 ### Create  AWS EC2 and set up dependencies needed for Jenkins
 
 1. Create an EC2 on AWS with the following configurations:
-ubuntu Amazon Machine Image
-t2.micro free tier eligible instance type
-create and download a new key pair on VM if don’t already have one (RSA key pair type and .pem private key file format ex key.pem),
-security groups (ssh, 22, 0.0.0.0/0) (HTTPS, 80, 0.0.0.0/0) (HTTPS, 8080, 0.0.0.0/0),
+- ubuntu Amazon Machine Image
+- t2.micro free tier eligible instance type
+- create and download a new key pair on VM if don’t already have one (RSA key pair type and .pem private key file format ex key.pem),
+- security groups (ssh, 22, 0.0.0.0/0) (HTTPS, 80, 0.0.0.0/0) (HTTPS, 8080, 0.0.0.0/0),
  
 2. Log into EC2
 In VM terminal make sure you are in the directory where your EC2 private key .pem is 
@@ -71,9 +71,9 @@ $sudo su - jenkins -s /bin/bash
 ### Create a Jenkins user in your AWS account
 
 10. In IAM dashboard click on Users under Access Management and add a new user with the following configurations:
-Access key - Programmatic Access
-Set permissions, click on attach existing policies directly and check off Administrator Access
-Create user and make sure to copy and save Access Key ID and Secret Access Key made
+- Access key - Programmatic Access
+- Set permissions, click on attach existing policies directly and check off Administrator Access
+- Create user and make sure to copy and save Access Key ID and Secret Access Key made
 
 ## Install AWS Command Line Interface (AWS CLI) on the Jenkins EC2 and configure
 
@@ -120,11 +120,11 @@ $ source ./.bashrc
 
 13. Fork repository https://github.com/kura-labs-org/kuralabs_deployment_2 
 14. Create personal access token in GitHub
-Click on account settings 
-go to Developer Settings all the way at the bottom of left-side box
-click Personal access tokens and press generate new tokens
-select scopes repo and admin:repo_hook
-Copy token to use in next step
+- Click on account settings 
+- go to Developer Settings all the way at the bottom of left-side box
+- click Personal access tokens and press generate new tokens
+- select scopes repo and admin:repo_hook
+- Copy token to use in next step
 
 ### Update Jenkinsfile and test_app.py in GitHub forked Repo
 
@@ -184,19 +184,19 @@ def test_home_page():
 ### Create a multibranch build
 
 17. Configure Jenkins
-Open browser and enter http:\\<<EC2PublicIPv4address>>:8080
-Create Jenkins profile
-In Jenkins Dashboard 
-Add New Item
-Enter item name (ex url-shortener) and select Multibranch Pipeline
-Enter display name (ex Build Flask) and Description (ex CI/CD pipeline deployment 2)
-Add Branch Source as GitHub
-Add Jenkins 
-Enter GitHub username and paste access token as password
-Enter forked repository url and validate 
-Ensure Build Configuration says Jenkinsfile
-Apply and Save
-Select Scan repository if build doesn’t automatically start creating
+- Open browser and enter http:\\<<EC2PublicIPv4address>>:8080
+- Create Jenkins profile
+- In Jenkins Dashboard 
+- Add New Item
+- Enter item name (ex url-shortener) and select Multibranch Pipeline
+- Enter display name (ex Build Flask) and Description (ex CI/CD pipeline deployment 2)
+- Add Branch Source as GitHub
+- Add Jenkins 
+- Enter GitHub username and paste access token as password
+- Enter forked repository url and validate 
+- Ensure Build Configuration says Jenkinsfile
+- Apply and Save
+- Select Scan repository if build doesn’t automatically start creating
 
 ## Deploy application from Elastic Beanstalk CLI
 
