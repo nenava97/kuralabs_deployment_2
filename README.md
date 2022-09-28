@@ -2,7 +2,7 @@
 
 ## Purpose: Set up a CI/CD pipeline using a GitHub repository with a url-shortener app code which is then built out and tested with AWS CLI on a Jenkins EC2 and finally deployed from Elastic Beanstalk CLI
 
-![Screenshot](Screen Shot 2022-09-27 at 11.49.34 PM.png)
+<img width="946" alt="Screen Shot 2022-09-27 at 11 49 34 PM" src="https://user-images.githubusercontent.com/108698688/192686243-3f75fdc7-fae7-40a0-a262-92634cf50d8b.png">
 
 ### Create  AWS EC2 and set up dependencies needed for Jenkins
 
@@ -43,8 +43,7 @@ $ java -version
 ```
 $ sudo nano /etc/sudoers
 ```
-![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.51.10 PM.png)
-
+<img width="560" alt="Screen Shot 2022-09-27 at 11 51 10 PM" src="https://user-images.githubusercontent.com/108698688/192686295-e1f0c8c5-a376-47aa-99a6-5288bd87d429.png">
 
 ### Install Jenkins on an EC2
 
@@ -101,13 +100,16 @@ Output format: json
 $ pip install awsebcli --upgrade --user 
 $ eb --version
 ```
-![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.51.33 PM.png)
+
+<img width="1020" alt="Screen Shot 2022-09-27 at 11 51 33 PM" src="https://user-images.githubusercontent.com/108698688/192686334-cfb9623c-9549-45c0-8ffd-8fdde956c5f6.png">
 
 Take note of the LOCAL_PATH where scripts are installed in so can add to $PATH
 ```
 $ nano .bashrc
 ```
-![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.51.41 PM.png)
+
+<img width="906" alt="Screen Shot 2022-09-27 at 11 51 41 PM" src="https://user-images.githubusercontent.com/108698688/192686358-30244476-b9e1-4adb-bde2-6116da8e5054.png">
+
 
 Load profile script with the export command in current session
 ```
@@ -206,51 +208,51 @@ $eb init
 ```
 Follow configuration options in screenshots below
 
-![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.52.17 PM.png)
+ <img width="484" alt="Screen Shot 2022-09-27 at 11 52 17 PM" src="https://user-images.githubusercontent.com/108698688/192686401-bdecd28e-0942-4f2a-a0b5-42c6fdf941c6.png">
 
 ```
 $eb create
 ```
 
-![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.52.45 PM.png)
+ <img width="883" alt="Screen Shot 2022-09-27 at 11 52 45 PM" src="https://user-images.githubusercontent.com/108698688/192686424-e6d1189a-ab77-4219-98bb-385ae630f6c0.png">
  
 19. Test environment
 Click on url AWS created for your environment and make sure the web page opens without error
 
-![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.52.58 PM.png)
+<img width="823" alt="Screen Shot 2022-09-27 at 11 52 58 PM" src="https://user-images.githubusercontent.com/108698688/192686459-b11fa9a6-fcf4-43f7-a289-ad64cc475cbd.png">
 
 ## Errors
 
 1. Permissions
 In step 11 got errors that jenkins user was not a sudoer, and therefore couldn’t install or run 
  
-![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.53.07 PM.png)
+ <img width="515" alt="Screen Shot 2022-09-27 at 11 53 07 PM" src="https://user-images.githubusercontent.com/108698688/192686495-a8796b2d-b5d7-4cb1-8dde-6466bd078c4b.png">
 
 Had to exit sudo user and edit sudoer file as in step 6
  
-![ScreenShot](screenshot.jpg)
+ <img width="439" alt="Screen Shot 2022-09-27 at 11 53 15 PM" src="https://user-images.githubusercontent.com/108698688/192686593-e6130922-2de5-40cf-89bc-cce40779c7a2.png">
 
 2. Dependencies
- 
-![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.53.25 PM.png)
+
+<img width="672" alt="Screen Shot 2022-09-27 at 11 53 25 PM" src="https://user-images.githubusercontent.com/108698688/192686643-142a1389-73c4-4205-8280-15c5786b7b7a.png">
 
 When made first build of application got errors that the python test couldn’t run 
 Had to install python as did in step 4
  
-![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.53.36 PM.png)
+<img width="618" alt="Screen Shot 2022-09-27 at 11 53 36 PM" src="https://user-images.githubusercontent.com/108698688/192686700-1142c6f6-a496-4b76-91de-d89bc0793153.png">
 
 3. PATH error
 Path for eb couldn’t be found when tried to run deployment after updating Jenkinsfile and test_app.py in step 15
  
-![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.53.46 PM.png)
+<img width="654" alt="Screen Shot 2022-09-27 at 11 53 46 PM" src="https://user-images.githubusercontent.com/108698688/192686740-c1fa1ac0-74b6-4bc8-ad68-3197433463aa.png">
 
 Added to $PATH using creating and loading bashrc file as did in step 12
 
 4. Detached GitHub
 Commits made in Jenkinsfile and test_app.py file in my VM’s local forked repository were pushed and not accepted by my forked repository on GitHub
  
-![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.53.59 PM.png)
+<img width="626" alt="Screen Shot 2022-09-27 at 11 53 59 PM" src="https://user-images.githubusercontent.com/108698688/192686779-9c57298b-5db8-4b57-ad55-babf9a03f868.png">
 
 Had to edit files directly in GitHub webpage 
  
-![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.54.08 PM.png)
+ <img width="622" alt="Screen Shot 2022-09-27 at 11 54 08 PM" src="https://user-images.githubusercontent.com/108698688/192686807-a52cf6f0-ea3b-44b0-b7a6-4043f0f88543.png">
