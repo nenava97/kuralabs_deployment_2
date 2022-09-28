@@ -2,7 +2,9 @@
 
 ## Purpose: Set up a CI/CD pipeline using a GitHub repository with a url-shortener app code which is then built out and tested with AWS CLI on a Jenkins EC2 and finally deployed from Elastic Beanstalk CLI
 
-## Create  AWS EC2 and set up dependencies needed for Jenkins
+![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.49.34 PM.png)
+
+### Create  AWS EC2 and set up dependencies needed for Jenkins
 
 1. Create an EC2 on AWS with the following configurations:
 ubuntu Amazon Machine Image
@@ -41,10 +43,10 @@ $ java -version
 ```
 $ sudo nano /etc/sudoers
 ```
-![ScreenShot](screenshot.jpg)
+![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.51.10 PM.png)
 
 
-## Install Jenkins on an EC2
+### Install Jenkins on an EC2
 
 7. Followed Jenkins documentation on how to install jenkins in Linux system (https://www.jenkins.io/doc/book/installing/linux/#debianubuntu )
 ```
@@ -54,7 +56,7 @@ $sudo apt-get update
 $sudo apt-get install jenkins
 ```
 
-## Activate the Jenkins user on the EC2
+### Activate the Jenkins user on the EC2
 
 8. Start Jenkins 
 ```
@@ -67,7 +69,7 @@ $sudo passwd jenkins
 $sudo su - jenkins -s /bin/bash
 ```
 
-## Create a Jenkins user in your AWS account
+### Create a Jenkins user in your AWS account
 
 10. In IAM dashboard click on Users under Access Management and add a new user with the following configurations:
 Access key - Programmatic Access
@@ -92,27 +94,27 @@ Secret Access Key
 Region us-east-1
 Output format: json 
 
-## Install EB CLI in the Jenkins EC2 user
+### Install EB CLI in the Jenkins EC2 user
 
 12. Followed AWS Elastic Beanstalk documentation on how to manually install the EB CLI (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-advanced.html)
 ```
 $ pip install awsebcli --upgrade --user 
 $ eb --version
 ```
-![ScreenShot](screenshot.jpg)
+![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.51.33 PM.png)
 
 Take note of the LOCAL_PATH where scripts are installed in so can add to $PATH
 ```
 $ nano .bashrc
 ```
-![ScreenShot](screenshot.jpg)
+![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.51.41 PM.png)
 
 Load profile script with the export command in current session
 ```
 $ source ./.bashrc
 ```
 
-## Connect GitHub to Jenkins Server
+### Connect GitHub to Jenkins Server
 
 13. Fork repository https://github.com/kura-labs-org/kuralabs_deployment_2 
 14. Create personal access token in GitHub
@@ -122,7 +124,7 @@ click Personal access tokens and press generate new tokens
 select scopes repo and admin:repo_hook
 Copy token to use in next step
 
-## Update Jenkinsfile and test_app.py in GitHub forked Repo
+### Update Jenkinsfile and test_app.py in GitHub forked Repo
 
 15. Commit following changes to deployment stage in Jenkinsfile
 ```
@@ -177,7 +179,7 @@ def test_home_page():
     assert response.status_code == 405
 ```
 
-## Create a multibranch build
+### Create a multibranch build
 
 17. Configure Jenkins
 Open browser and enter http:\\<<EC2PublicIPv4address>>:8080
@@ -203,60 +205,52 @@ $cd /var/workspace/url-shortner/
 $eb init
 ```
 Follow configuration options in screenshots below
-![ScreenShot](screenshot.jpg)
-![ScreenShot](screenshot.jpg)
 
+![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.52.17 PM.png)
 
 ```
 $eb create
 ```
-![ScreenShot](screenshot.jpg)
-![ScreenShot](screenshot.jpg)
 
-
-
-
+![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.52.45 PM.png)
+ 
 19. Test environment
 Click on url AWS created for your environment and make sure the web page opens without error
-![ScreenShot](screenshot.jpg)
-![ScreenShot](screenshot.jpg)
 
-
+![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.52.58 PM.png)
 
 ## Errors
 
 1. Permissions
 In step 11 got errors that jenkins user was not a sudoer, and therefore couldn’t install or run 
-![ScreenShot](screenshot.jpg)
+ 
+![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.53.07 PM.png)
 
 Had to exit sudo user and edit sudoer file as in step 6
+ 
 ![ScreenShot](screenshot.jpg)
-
-
 
 2. Dependencies
-![ScreenShot](screenshot.jpg)
-![ScreenShot](screenshot.jpg)
+ 
+![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.53.25 PM.png)
 
 When made first build of application got errors that the python test couldn’t run 
 Had to install python as did in step 4
-![ScreenShot](screenshot.jpg)
-
-
-
+ 
+![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.53.36 PM.png)
 
 3. PATH error
 Path for eb couldn’t be found when tried to run deployment after updating Jenkinsfile and test_app.py in step 15
-![ScreenShot](screenshot.jpg)
-
+ 
+![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.53.46 PM.png)
 
 Added to $PATH using creating and loading bashrc file as did in step 12
 
 4. Detached GitHub
-Commits made in Jenkinsfile and test_app.py file in my VM’s local forked repository were pushed and not accepted by my forked repository on GitHub 
-![ScreenShot](screenshot.jpg)
-![ScreenShot](screenshot.jpg)
-
+Commits made in Jenkinsfile and test_app.py file in my VM’s local forked repository were pushed and not accepted by my forked repository on GitHub
+ 
+![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.53.59 PM.png)
 
 Had to edit files directly in GitHub webpage 
-![ScreenShot](screenshot.jpg)
+ 
+![ScreenShot](kuralabs_deployment_2/Screen Shot 2022-09-27 at 11.54.08 PM.png)
