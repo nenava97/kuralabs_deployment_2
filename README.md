@@ -2,7 +2,7 @@
 
 ## Purpose: Set up a CI/CD pipeline using a GitHub repository with a url-shortener app code which is then built out and tested with AWS CLI on a Jenkins EC2 and finally deployed from Elastic Beanstalk CLI
 
-![ScreenShot](Screen Shot 2022-09-27 at 11.49.34 PM.png)
+![Screenshot](Screen Shot 2022-09-27 at 11.49.34 PM.png)
 
 ### Create  AWS EC2 and set up dependencies needed for Jenkins
 
