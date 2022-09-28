@@ -224,11 +224,11 @@ Click on url AWS created for your environment and make sure the web page opens w
 ## Errors
 
 1. Permissions
-In step 11 got errors that jenkins user was not a sudoer, and therefore couldn’t install or run 
+- In step 11 got errors that jenkins user was not a sudoer, and therefore couldn’t install or run 
  
  <img width="515" alt="Screen Shot 2022-09-27 at 11 53 07 PM" src="https://user-images.githubusercontent.com/108698688/192686495-a8796b2d-b5d7-4cb1-8dde-6466bd078c4b.png">
 
-Had to exit sudo user and edit sudoer file as in step 6
+- Had to exit sudo user and edit sudoer file as in step 6
  
  <img width="439" alt="Screen Shot 2022-09-27 at 11 53 15 PM" src="https://user-images.githubusercontent.com/108698688/192686593-e6130922-2de5-40cf-89bc-cce40779c7a2.png">
 
@@ -236,23 +236,23 @@ Had to exit sudo user and edit sudoer file as in step 6
 
 <img width="672" alt="Screen Shot 2022-09-27 at 11 53 25 PM" src="https://user-images.githubusercontent.com/108698688/192686643-142a1389-73c4-4205-8280-15c5786b7b7a.png">
 
-When made first build of application got errors that the python test couldn’t run 
-Had to install python as did in step 4
+- When made first build of application got errors that the python test couldn’t run 
+- Had to install python as did in step 4
  
 <img width="618" alt="Screen Shot 2022-09-27 at 11 53 36 PM" src="https://user-images.githubusercontent.com/108698688/192686700-1142c6f6-a496-4b76-91de-d89bc0793153.png">
 
 3. PATH error
-Path for eb couldn’t be found when tried to run deployment after updating Jenkinsfile and test_app.py in step 15
+- Path for eb couldn’t be found when tried to run deployment after updating Jenkinsfile and test_app.py in step 15
  
 <img width="654" alt="Screen Shot 2022-09-27 at 11 53 46 PM" src="https://user-images.githubusercontent.com/108698688/192686740-c1fa1ac0-74b6-4bc8-ad68-3197433463aa.png">
 
-Added to $PATH using creating and loading bashrc file as did in step 12
+- Added to $PATH using creating and loading bashrc file as did in step 12
 
 4. Detached GitHub
-Commits made in Jenkinsfile and test_app.py file in my VM’s local forked repository were pushed and not accepted by my forked repository on GitHub
+- Commits made in Jenkinsfile and test_app.py file in my VM’s local forked repository were pushed and not accepted by my forked repository on GitHub
  
 <img width="626" alt="Screen Shot 2022-09-27 at 11 53 59 PM" src="https://user-images.githubusercontent.com/108698688/192686779-9c57298b-5db8-4b57-ad55-babf9a03f868.png">
 
-Had to edit files directly in GitHub webpage 
+- Had to edit files directly in GitHub webpage 
  
  <img width="622" alt="Screen Shot 2022-09-27 at 11 54 08 PM" src="https://user-images.githubusercontent.com/108698688/192686807-a52cf6f0-ea3b-44b0-b7a6-4043f0f88543.png">
